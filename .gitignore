@@ -1,86 +1,38 @@
-# ===========================================
-#  Build Artifacts (C / C++)
-# ===========================================
-# Object and binary files
-*.o
-*.a
-*.so
-*.out
-*.exe
-*.hex
-
-# Compiled binaries from llama2c builds
-run
-runq
-bench_*
-test_*
-
-# ===========================================
-#  LLaMA2C Project-Specific
-# ===========================================
-# Model binaries and checkpoints — heavy, not for git
-llama2c/models/
-
-# NO checkpoint is tracked. stories110M.bin alone is 418 MiB, past GitHub's 100 MB
-# per-file hard limit, and all three together are 495 MB against 18 MB for the rest
-# of the tree. Fetch them with ./fetch-models.sh (see server/models/README.md).
-server/models/*.bin
-
-# Raw perf data (binary profiling traces)
-perf.data
-perf.data.old
-
-# ===========================================
-#  Editor and Environment Files
-# ===========================================
-.vscode/
-.idea/
-*.code-workspace
-.temp/
-
-# ===========================================
-#  Python Helper Scripts (if any)
-# ===========================================
+# Python Virtual Environments & Cache
+venv/
+.venv/
 __pycache__/
 *.pyc
-.venv/
-venv/
 
-# ===========================================
-#  Other script files
-# ===========================================
-*.sh
+# Large Model Weights & Tokenizers
+*.bin
+server/*.bin
+weights/
 
-# ===========================================
-#  Temporary and Log Files
-# ===========================================
-*.tmp
-logs/
+# xv6 Filesystem & QEMU Disk Images
+*.img
+fs.img
+xv6.img
+qemu.log
+.gdb_history
 
-# ===========================================
-#  Keep Useful Data / Reports
-# ===========================================
-# Keep all results/ files (do NOT ignore results/)
-# Keep text and CSV outputs
-!*.txt
-!*.csv
+# C / RISC-V Build Artifacts
+xv6-riscv/kernel/kernel
+xv6-riscv/kernel/*.o
+xv6-riscv/kernel/*.d
+xv6-riscv/kernel/*.asm
+xv6-riscv/user/_*
+xv6-riscv/user/*.o
+xv6-riscv/user/*.d
+xv6-riscv/user/*.asm
+*.o
+*.d
 
-# ===========================================
-#  Documentation Files
-# ===========================================
-# Ignore Temporarily 
-docs/
-
-# ===========================================
-#  End of .gitignore
-# ===========================================
-
-# ===========================================
-#  Shipped artifacts (Milestone 1 handoff)
-# ===========================================
-# This tree DISTRIBUTES prebuilt binaries and its own launch scripts; the generic
-# rules above would drop them from a clone, leaving a student with no way to boot.
-# Re-include them explicitly. (The `*.sh` rule above is what hides the boot scripts.)
-!boot.sh
-!boot-gdb.sh
-!fetch-models.sh
+# LaTeX Build Auxiliary Files (inside docs/)
+docs/*.aux
+docs/*.log
+docs/*.out
+docs/*.toc
+docs/*.synctex.gz
+docs/*.fls
+docs/*.fdb_latexmk
